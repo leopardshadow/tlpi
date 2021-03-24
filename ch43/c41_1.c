@@ -34,6 +34,8 @@ int main(int argc, char const *argv[])
 
         close(filedes[1]);
 
+        // wait(NULL);
+
         break;
 
     default: // parent (read)
