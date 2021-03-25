@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#define BUF_SIZE 10000
-#define N        1
+const ssize_t BUF_SIZE = 1E6;
+const ssize_t N        = 1E10;
 
 int main(int argc, char const *argv[])
 {
@@ -44,15 +44,15 @@ int main(int argc, char const *argv[])
 
         for(;;) {
             numRead = read(filedes[0], buf, BUF_SIZE-3);
-            printf("%zd\n", numRead);
 
             if(numRead == -1)
                 exit(-1);
             if(numRead == 0)
+                close(filedes[0]);
                 break;
         }
         
-        printf("%d chars passed through pipe\n", BUF_SIZE*N);
+        printf("%zu chars passed through pipe\n", BUF_SIZE*N);
 
         break;
     }
