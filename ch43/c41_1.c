@@ -2,13 +2,16 @@
 #include <stdio.h>
 #include <unistd.h>
 
-const ssize_t BUF_SIZE = 1E6;
+const ssize_t BUF_SIZE = 1E7;
 const ssize_t N        = 1E10;
+
+// char buf[BUF_SIZE];  // --> NO segmentation fault
 
 int main(int argc, char const *argv[])
 {
     int filedes[2];
-    char buf[BUF_SIZE];
+    char* buf = (char*)malloc(sizeof(char)*BUF_SIZE);  // --> NO segmentation fault
+    // char buf[BUF_SIZE];  // ---> segmentation fault
     ssize_t numRead;
 
     for(int i=0; i<BUF_SIZE; i++) {
@@ -43,7 +46,7 @@ int main(int argc, char const *argv[])
             exit(-1);
 
         for(;;) {
-            numRead = read(filedes[0], buf, BUF_SIZE-3);
+            numRead = read(filedes[0], buf, BUF_SIZE);
 
             if(numRead == -1)
                 exit(-1);
@@ -59,4 +62,3 @@ int main(int argc, char const *argv[])
 
     return 0;
 }
-
