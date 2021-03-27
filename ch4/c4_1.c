@@ -9,8 +9,12 @@ int main(int argc, char const *argv[])
 {
     char buf[N];
     ssize_t rdNum;
-    int openFlag = O_WRONLY | O_CREAT | O_TRUNC;
     mode_t filePerms = S_IRUSR | S_IWUSR;
+
+    char c = getopt(argc, argv, "a");
+    if(c=='a') 
+        printf("OAOAOA");
+    int openFlag = O_WRONLY | O_CREAT | O_TRUNC;
 
     int fd = open(argv[1], openFlag, filePerms);
     // printf("%d\n", fd);
