@@ -17,8 +17,11 @@ int main(int argc, char const *argv[])
     // there might be many possibilities for fd = -1
     // print the errno value
     if(fd == -1) {
-        printf("%d\n", errno);
-        fprintf( stderr, "system error: %s\n" , sys_errlist[errno] ); 
+
+        // perror("open =w=");
+
+        // printf("%d\n", errno);
+        // fprintf( stderr, "system error: %s\n" , sys_errlist[errno] ); 
     }
 
     return 0;
