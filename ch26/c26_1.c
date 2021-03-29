@@ -10,6 +10,8 @@ int main(int argc, char const *argv[])
             exit(-1);
             break;
         case 0: // child
+            // child will be adopted by init process (pid = 0)
+            // so the parent id of child process becomes 1
             while((parentPid = getppid()) != 1) {
                 sleep(1);
                 printf("parentPid = %d\n", parentPid);
