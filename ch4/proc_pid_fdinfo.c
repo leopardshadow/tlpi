@@ -61,3 +61,17 @@ int main(int argc, char const *argv[])
 
     return 0;
 }
+
+
+/*
+    $ ls /proc/4078936/fdinfo/
+    0  1  2
+    $ ls /proc/4078936/fdinfo/
+    0  1  2  3
+    $ cat /proc/4078936/fdinfo/3
+    pos:	0
+    flags:	0100001
+    mnt_id:	30
+    $ cat /proc/4078936/fdinfo/3
+    cat: /proc/4078936/fdinfo/3: No such file or directory
+*/
