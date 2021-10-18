@@ -1,6 +1,7 @@
 /*
-    when the pipe is full, the program is blocked there
+    when the pipe is full, the process is blocked there
     needs someone to read from the pipe to consume the data
+    then it will start to continue
 */
 
 
