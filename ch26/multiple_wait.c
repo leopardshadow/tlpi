@@ -10,13 +10,13 @@ int main(int argc, char const *argv[])
 
     for(int i = 1; i < 5; i++) {
 
-        switch ((childPid = fork()))
+        switch (fork())
         {
         case -1:
             exit(-1);
         case 0:    // child process
             sleep(i);
-            printf("end of child process %d\n", childPid);
+            printf("end of child process %d\n", getpid());
             exit(i);
         default:
             break;
@@ -25,9 +25,12 @@ int main(int argc, char const *argv[])
 
     // the results looks strange ..
     // update: fork() = 0 is child, <> 0 is parent owo
+
+    int status;
+
     for(int i = 1; i < 5; i++) {
-        wait(NULL);
-        printf("wait\n");
+        childPid = wait(&status);
+        printf("child %d ends with status %d\n", childPid, status);
     }
     printf("end of parent process\n");
 
