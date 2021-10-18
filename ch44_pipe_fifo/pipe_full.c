@@ -1,3 +1,8 @@
+/*
+    when the pipe is full, the program is blocked there
+    needs someone to read from the pipe to consume the data
+*/
+
 
 #include <stdio.h>
 #include <sys/wait.h>
@@ -21,6 +26,7 @@ int main(int argc, char const *argv[])
     case 0:
         printf("start of the producer\n\n");
         close(pfd[0]);
+        // ** compare the number with a smaller one **
         //                  1E6
         for(int i = 0; i< 1000000; i++) {
             write(pfd[1], ".", 1);
@@ -31,6 +37,8 @@ int main(int argc, char const *argv[])
     default:  // parent
         break;
     }
+
+    sleep(3);
 
     switch (fork())
     {
