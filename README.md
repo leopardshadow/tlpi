@@ -8,3 +8,7 @@ ch.4 - File I/O - Basic Model
  * 4-2: cp
 
 ch.5 - File I/O - Details
+
+
+ch.44 - pipe & fifo
+* what happens if the pipe is full
