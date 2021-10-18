@@ -14,17 +14,17 @@ int main(int argc, char const *argv[])
         {
         case -1:
             exit(-1);
-        case 0:
-            break;
-        default:  // child process
+        case 0:    // child process
             sleep(i);
             printf("end of child process %d\n", childPid);
             exit(i);
+        default:
             break;
         }
     }
 
     // the results looks strange ..
+    // update: fork() = 0 is child, <> 0 is parent owo
     for(int i = 1; i < 5; i++) {
         wait(NULL);
         printf("wait\n");
