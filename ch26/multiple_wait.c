@@ -30,9 +30,15 @@ int main(int argc, char const *argv[])
 
     for(int i = 1; i < 5; i++) {
         childPid = wait(&status);
-        printf("child %d ends with status %d\n", childPid, status);
+        printf("child %d ends with status %d\n", childPid, status >> 8);
     }
     printf("end of parent process\n");
+
+    /*
+        when the process is normally terminated,
+        status = exitStatus << 8;
+        (i.e. higher 8 bit: exitStatus, lower 8 bit: 0)
+    */
 
     return 0;
 }
